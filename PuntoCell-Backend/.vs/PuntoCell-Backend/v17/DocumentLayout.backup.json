@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ronyo\\source\\repos\\PuntoCell-Backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C8B04EE3-A4EC-4768-8A8D-F4CFF321AC17}|PuntoCell-Backend\\PuntoCell-Backend.csproj|c:\\users\\ronyo\\source\\repos\\puntocell-backend\\puntocell-backend\\model\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8B04EE3-A4EC-4768-8A8D-F4CFF321AC17}|PuntoCell-Backend\\PuntoCell-Backend.csproj|solutionrelative:puntocell-backend\\model\\venta.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Venta.cs",
+              "DocumentMoniker": "C:\\Users\\ronyo\\source\\repos\\PuntoCell-Backend\\PuntoCell-Backend\\model\\Venta.cs",
+              "RelativeDocumentMoniker": "PuntoCell-Backend\\model\\Venta.cs",
+              "ToolTip": "C:\\Users\\ronyo\\source\\repos\\PuntoCell-Backend\\PuntoCell-Backend\\model\\Venta.cs",
+              "RelativeToolTip": "PuntoCell-Backend\\model\\Venta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-25T20:39:31.117Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

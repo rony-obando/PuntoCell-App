@@ -1,0 +1,10 @@
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\PuntoCell-Backend.deps.json
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\PuntoCell-Backend.runtimeconfig.json
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\PuntoCell-Backend.pdb
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\Amazon.Lambda.APIGatewayEvents.dll
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\Amazon.Lambda.Core.dll
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\Amazon.Lambda.Serialization.SystemTextJson.dll
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\AWSSDK.APIGateway.dll
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\AWSSDK.Core.dll
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\AWSSDK.DynamoDBv2.dll
+C:\Users\ronyo\source\repos\PuntoCell-Backend\PuntoCell-Backend\bin\Debug\net8.0\publish\PuntoCell-Backend.dll

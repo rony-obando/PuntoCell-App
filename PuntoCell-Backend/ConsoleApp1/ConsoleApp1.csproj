@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Amazon.Lambda.APIGatewayEvents" Version="2.7.1" />
+    <PackageReference Include="Amazon.Lambda.Core" Version="2.5.0" />
+    <PackageReference Include="AWSSDK.APIGateway" Version="3.7.401.1" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.403.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PuntoCell-Backend\PuntoCell-Backend.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "7YxU8Er/0uY=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ronyo\\source\\repos\\PuntoCell-Backend\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ronyo\\.nuget\\packages\\amazon.lambda.apigatewayevents\\2.7.1\\amazon.lambda.apigatewayevents.2.7.1.nupkg.sha512",
+    "C:\\Users\\ronyo\\.nuget\\packages\\amazon.lambda.core\\2.5.0\\amazon.lambda.core.2.5.0.nupkg.sha512",
+    "C:\\Users\\ronyo\\.nuget\\packages\\amazon.lambda.serialization.systemtextjson\\2.4.4\\amazon.lambda.serialization.systemtextjson.2.4.4.nupkg.sha512",
+    "C:\\Users\\ronyo\\.nuget\\packages\\awssdk.apigateway\\3.7.401.1\\awssdk.apigateway.3.7.401.1.nupkg.sha512",
+    "C:\\Users\\ronyo\\.nuget\\packages\\awssdk.core\\3.7.400.57\\awssdk.core.3.7.400.57.nupkg.sha512",
+    "C:\\Users\\ronyo\\.nuget\\packages\\awssdk.dynamodbv2\\3.7.403.7\\awssdk.dynamodbv2.3.7.403.7.nupkg.sha512"
+  ],
+  "logs": []
+}
