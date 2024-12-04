@@ -4,10 +4,6 @@ using PuntoCell_Backend.controller;
 using PuntoCell_Backend.model;
 using System.Text.Json;
 
-[assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
-
-
-
 namespace PuntoCell_Backend.view
 {
     public class ProductoFunction

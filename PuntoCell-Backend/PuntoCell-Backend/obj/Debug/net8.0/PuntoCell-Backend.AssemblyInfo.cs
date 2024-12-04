@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PuntoCell-Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bcab7db88f7c510c498d2ab7f40861f9dbf23443")]
 [assembly: System.Reflection.AssemblyProductAttribute("PuntoCell-Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PuntoCell-Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

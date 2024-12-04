@@ -9,8 +9,8 @@ namespace PuntoCell_Backend.model
     public class Venta
 {
         public string Id { get; set; }
-        public string NombreP {  get; set; }
-        public DateTime Fecha { get; set; }
-        public string Detalles { get; set; }
+        public string nombreP {  get; set; }
+        public DateTime fecha { get; set; }
+        public string detalles { get; set; }
 }
 }
