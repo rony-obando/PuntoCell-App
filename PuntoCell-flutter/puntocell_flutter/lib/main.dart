@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:puntocell_flutter/providers/producto_provider.dart';
 import 'package:puntocell_flutter/screens/home_screen.dart';
+import 'package:puntocell_flutter/screens/login_screen.dart';
+import 'package:puntocell_flutter/screens/productos_screen.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -9,15 +13,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ProductoProvider()),
+      ],
+
+      builder: (context,_){
+        return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'PuntoCellApp',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF039443)),
         scaffoldBackgroundColor: const Color(0xFFFFFFFF),
         useMaterial3: true,
       ),
-      home: const HomeScreen(),
+      initialRoute: 'Login',
+      routes: {
+        'Login': (_) => const LoginScreen(),
+        'Home': (_) => const HomeScreen(),
+        'Productos': (_) => const ProductoScreen(),
+      },
+    );
+      }, 
+    
     );
   }
 }

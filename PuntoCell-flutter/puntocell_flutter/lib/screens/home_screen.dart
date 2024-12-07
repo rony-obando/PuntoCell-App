@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:puntocell_flutter/providers/producto_provider.dart';
+import 'package:puntocell_flutter/screens/productos_screen.dart';
+import 'package:puntocell_flutter/util/navigation_util.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,7 +20,11 @@ class HomeScreen extends StatelessWidget {
                 height: 40,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<ProductoProvider>().fetchProductos();
+                  navigatioUtil.navigateToScreen(
+                      context, const ProductoScreen());
+                },
                 style: TextButton.styleFrom(
                   side: const BorderSide(width: 5, color: Color(0xFF039443)),
                   alignment: Alignment.center,
@@ -134,7 +142,7 @@ class HomeAppBar extends StatelessWidget {
         children: [
           Image.asset(
             "assets/logopuntocell.png",
-            height: kToolbarHeight/1.2,
+            height: kToolbarHeight / 1.2,
           ),
           Image.asset(
             "assets/letraslogo.png",
@@ -143,7 +151,6 @@ class HomeAppBar extends StatelessWidget {
           ),
         ],
       ),
-
     );
   }
 }

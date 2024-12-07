@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:puntocell_flutter/screens/home_screen.dart';
+import 'package:puntocell_flutter/util/navigation_util.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -85,7 +87,10 @@ class LoginScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    navigatioUtil.navigateToScreen(
+                      context, const HomeScreen());
+                  },
                   child: const Text(
                     'Continuar',
                     style: TextStyle(fontWeight: FontWeight.bold),
