@@ -50,6 +50,7 @@ class OptionsProduct {
                       ElevatedButton(
                         onPressed: () {
                           QuickAlert.show(
+                            barrierDismissible: false,
                             context: context,
                             type: QuickAlertType.confirm,
                             title: "¿Estás seguro?",

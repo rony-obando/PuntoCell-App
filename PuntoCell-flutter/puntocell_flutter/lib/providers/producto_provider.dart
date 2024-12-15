@@ -1,15 +1,16 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:puntocell_flutter/models/producto.dart';
+import 'package:puntocell_flutter/repository/producto_repository.dart';
 import 'package:uuid/uuid.dart';
 
 class ProductoProvider with ChangeNotifier {
-  ProductoProvider() {
+  ProductoProvider({required this.productoRepository}) {
     searchController.addListener(() {
       filterProducts(searchController.text);
     });
   }
+  late ProductoRepository productoRepository;
+
 
   final TextEditingController searchController = TextEditingController();
 
@@ -30,6 +31,7 @@ class ProductoProvider with ChangeNotifier {
     notifyListeners();
   }
 
+
   List<Producto> productosAll = [];
   List<Producto> productos = [];
   Producto prd = Producto(Id: '', nombre: '', marca: '', stock: 0);
@@ -45,16 +47,13 @@ class ProductoProvider with ChangeNotifier {
     return !deleted;
   }
 
-  Future<void> fetchProductos() async {
-    const String url =
-        'https://ygftut36b7.execute-api.us-east-2.amazonaws.com/Producto/Producto';
+  Future<List<String>> fetchProductos() async {
+    changeisloading(true);
     try {
-      final response = await http.get(Uri.parse(url));
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-        final List<dynamic> bodyData = jsonDecode(data['body']);
-
-        productos = bodyData.map((item) => Producto.fromJson(item)).toList();
+      final response = await productoRepository.fetchProductos();
+      
+      if (response.isNotEmpty) {
+        productos = response;
         productosAll = productos;
         isLoading = false;
         marcas = productosAll
@@ -63,12 +62,15 @@ class ProductoProvider with ChangeNotifier {
         marcas = marcas.toSet().toList();
         valorinicial = marcas.first;
         notifyListeners();
+        return productosAll.map((item)=>item.nombre==null?'nulo':item.nombre!).toList();
       } else {
         throw Exception('Error al cargar los productos');
+        
       }
     } catch (e) {
       isLoading = false;
       notifyListeners();
+      return [];
     }
   }
 
@@ -92,34 +94,10 @@ class ProductoProvider with ChangeNotifier {
     if (!nuevamarca) {
       producto.marca = valorinicial;
     }
-    if (producto.Id!.isEmpty) {
-      producto.Id = 'P${DateTime.now().millisecondsSinceEpoch}';
-    }
-    const String url =
-        'https://ygftut36b7.execute-api.us-east-2.amazonaws.com/Producto/Producto';
     try {
-      final body = jsonEncode({
-        'resource': '/Producto/Producto',
-        'path': '/Producto/Producto',
-        'httpMethod': 'POST',
-        'headers': {
-          'Content-Type': 'application/json',
-        },
-        'body': jsonEncode({
-          'Id': producto.Id,
-          'nombre': producto.nombre,
-          'marca': producto.marca,
-          'stock': producto.stock,
-        }),
-        'isBase64Encoded': false
-      });
-      final response = await http.post(
-        Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
-        body: body,
-      );
-      if (response.statusCode == 201 || response.statusCode == 200) {
-        print(response.body);
+      
+      bool response = await productoRepository.addProducto(producto);
+      if (response) {
         await fetchProductos();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -138,9 +116,7 @@ class ProductoProvider with ChangeNotifier {
 
         return true;
       } else {
-        print('Error al crear el producto: ${response.body}');
         notifyListeners();
-
         return false;
       }
     } catch (ex) {
@@ -150,30 +126,12 @@ class ProductoProvider with ChangeNotifier {
 
   Future<void> deleteProducto(Producto producto) async {
     changeisloading(true);
-    const String url =
-        'https://ygftut36b7.execute-api.us-east-2.amazonaws.com/Producto/Producto';
     try {
-      final body = jsonEncode({
-        'headers': {
-          'Content-Type': 'application/json',
-        },
-        'body': jsonEncode({
-          'Id': producto.Id,
-          'nombre': producto.nombre,
-          'marca': producto.marca,
-          'stock': producto.stock,
-        }),
-        'isBase64Encoded': false
-      });
-      final response = await http.delete(
-        Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
-        body: body,
-      );
-      if (response.statusCode == 201 || response.statusCode == 200) {
-        print(response.body);
+      bool response = await productoRepository.deleteProducto(producto);
+      if (response) {
+        print('Se ha borrado el producto: ${producto.Id}');
       } else {
-        print('Error al borrar el producto: ${response.body}');
+        print('Error al borrar el producto: ${producto.Id}');
       }
       fetchProductos();
       notifyListeners();

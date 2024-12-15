@@ -1,0 +1,13 @@
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/CMakeFiles/INSTALL.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/CMakeFiles/ZERO_CHECK.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/flutter/CMakeFiles/flutter_wrapper_plugin.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/flutter/CMakeFiles/flutter_wrapper_app.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/flutter/CMakeFiles/flutter_assemble.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/flutter/CMakeFiles/INSTALL.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/runner/CMakeFiles/puntocell_flutter.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/runner/CMakeFiles/INSTALL.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/runner/CMakeFiles/ALL_BUILD.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/plugins/flutter_localization/CMakeFiles/flutter_localization_plugin.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/plugins/flutter_localization/CMakeFiles/INSTALL.dir
+C:/Users/ronyo/source/repos/PuntoCell-flutter/puntocell_flutter/windows/build/plugins/flutter_localization/CMakeFiles/ALL_BUILD.dir
