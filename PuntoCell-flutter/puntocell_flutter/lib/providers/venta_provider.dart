@@ -1,8 +1,7 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:puntocell_flutter/models/producto.dart';
 import 'package:puntocell_flutter/models/venta.dart';
 import 'package:puntocell_flutter/providers/producto_provider.dart';
 import 'package:puntocell_flutter/repository/venta_repository.dart';
@@ -13,14 +12,31 @@ class VentaProvider with ChangeNotifier {
   late VentaRepository ventaRepository;
   bool isLoading = true;
   List<Venta> ventas = [];
-  Venta vnt = Venta(Id: '', nombreP: '', fecha: DateTime.now(), detalles: '');
+  Venta vnt = Venta(
+      Id: '',
+      Idproducto: '',
+      fecha: DateTime.now(),
+      detalles: '',
+      cantidad: 0,
+      precioventa: 0);
   DateTime fecha = DateTime.now();
+  List<Producto> allProductos = [];
   List<String> productos = [];
   List<String> productosfiltrados = [];
+  var productosDatatable = <String, String>{};
+  Producto prd =
+      Producto(Id: '', nombre: '', marca: '', stock: 0, precio: 0, fotos: []);
 
   Future<void> getProductos(BuildContext context) async {
-    productos = await Provider.of<ProductoProvider>(context, listen: false)
+    allProductos = await Provider.of<ProductoProvider>(context, listen: false)
         .fetchProductos();
+    productos = allProductos.map((item) => item.nombre ?? 'nulo').toList();
+    notifyListeners();
+  }
+
+  void findProducto(String nombre) {
+    prd = allProductos.firstWhere(
+        (item) => item.nombre!.toLowerCase() == nombre.toLowerCase());
     notifyListeners();
   }
 
@@ -32,11 +48,56 @@ class VentaProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  String nombreProd = '';
+
+  void changeNombreProd(String? value) {
+    nombreProd = value ?? '';
+    filterProducts(value!);
+    notifyListeners();
+  }
+
+  void filterProducts(String query) {
+    final results = allProductos
+        .where((product) {
+          final name = product.nombre?.toLowerCase() ?? '';
+          final brand = product.marca?.toLowerCase() ?? '';
+          final input = query.toLowerCase();
+
+          return name.contains(input) || brand.contains(input);
+        })
+        .toList()
+        .map((item) => item.nombre!)
+        .toList()
+        .take(4)
+        .toList();
+
+    if (query.isEmpty) {
+      productos = allProductos.map((item) => item.nombre!).toList();
+    } else {
+      productos = results;
+    }
+    notifyListeners();
+  }
+
   Future<void> fetchVentas(BuildContext context) async {
     changeisloading(true);
-    getProductos(context);
+    await getProductos(context);
+    prd.nombre = productos.first;
     try {
       ventas = await ventaRepository.fetchVentas();
+      for (var p in ventas) {
+        if (p.Idproducto == null) {
+          productosDatatable.putIfAbsent('nulo', () => 'nulo');
+        } else {
+          
+          productosDatatable.update((p.Idproducto!), (valorExistente) => allProductos
+                  .firstWhere((item) => item.Id == p.Idproducto)
+                  .nombre!,
+              ifAbsent: () => allProductos
+                  .firstWhere((item) => item.Id == p.Idproducto)
+                  .nombre!);
+        }
+      }
       isLoading = false;
       notifyListeners();
     } catch (ex) {
@@ -85,7 +146,7 @@ class VentaProvider with ChangeNotifier {
             backgroundColor: const Color(0xFF039443),
             content: Center(
               child: Text(
-                'Venta del producto: ${venta.nombreP} registrada!',
+                'Venta del producto: ${venta.Idproducto} registrada!',
                 style: const TextStyle(
                     color: Colors.white, fontWeight: FontWeight.bold),
               ),
@@ -104,14 +165,20 @@ class VentaProvider with ChangeNotifier {
   Future<void> deleteVenta(Venta venta, BuildContext context) async {
     changeisloading(true);
     try {
-     bool response = await ventaRepository.deleteVenta(venta);
+      bool response = await ventaRepository.deleteVenta(venta);
       if (response) {
+        venta.Idproducto == null
+            ? productosDatatable.remove('nulo')
+            : productosDatatable.remove(allProductos
+                    .firstWhere((item) => item.Id == venta.Idproducto!)
+                    .nombre ??
+                'nulo');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: const Color(0xFF039443),
             content: Center(
               child: Text(
-                'Venta: ${venta.nombreP} ${DateFormat('dd/MM/yy').format(venta.fecha!)} Eliminada!',
+                'Venta: ${venta.Id} ${DateFormat('dd/MM/yy').format(venta.fecha!)} Eliminada!',
                 style: const TextStyle(
                     color: Colors.white, fontWeight: FontWeight.bold),
               ),
@@ -127,8 +194,8 @@ class VentaProvider with ChangeNotifier {
             content: Center(
               child: Text(
                 'Ocurrió un error al eliminar el registro de la venta',
-                style: TextStyle(
-                    color: Colors.white, fontWeight: FontWeight.bold),
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
             duration: Duration(seconds: 3),

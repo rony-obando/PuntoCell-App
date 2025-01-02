@@ -34,20 +34,37 @@ class ProductoProvider with ChangeNotifier {
 
   List<Producto> productosAll = [];
   List<Producto> productos = [];
-  Producto prd = Producto(Id: '', nombre: '', marca: '', stock: 0);
+  Producto prd = Producto(Id: '', nombre: '', marca: '', stock: 0, precio: 0, fotos: []);
   bool isLoading = true;
   List<String> marcas = [];
   bool nuevamarca = false;
   String valorinicial = '';
   var uuid = const Uuid();
   bool deleted = false;
+  int indexCarrousel = 0;
+  List<String> imagenes = [];
 
   bool changedeleted() {
     deleted = !deleted;
     return !deleted;
   }
 
-  Future<List<String>> fetchProductos() async {
+  void changeIndexCarousel(int i){
+    indexCarrousel = i;
+    notifyListeners();
+  }
+
+  void addImagen(String value,bool reset){
+    imagenes.add(value);
+    reset?imagenes.clear():null;
+    notifyListeners();
+  }
+  void deleteImagen(String value){
+    imagenes.remove(value);
+    notifyListeners();
+  }
+
+  Future<List<Producto>> fetchProductos() async {
     changeisloading(true);
     try {
       final response = await productoRepository.fetchProductos();
@@ -62,7 +79,7 @@ class ProductoProvider with ChangeNotifier {
         marcas = marcas.toSet().toList();
         valorinicial = marcas.first;
         notifyListeners();
-        return productosAll.map((item)=>item.nombre==null?'nulo':item.nombre!).toList();
+        return productosAll;
       } else {
         throw Exception('Error al cargar los productos');
         
@@ -84,6 +101,11 @@ class ProductoProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> changeProdcuto(Producto prd) async{
+    prd=prd;
+    notifyListeners();
+  }
+
   void changeisloading(bool value) {
     isLoading = value;
     notifyListeners();
@@ -95,7 +117,7 @@ class ProductoProvider with ChangeNotifier {
       producto.marca = valorinicial;
     }
     try {
-      
+      producto.fotos=imagenes;
       bool response = await productoRepository.addProducto(producto);
       if (response) {
         await fetchProductos();

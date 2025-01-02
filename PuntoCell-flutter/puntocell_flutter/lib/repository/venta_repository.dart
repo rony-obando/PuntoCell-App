@@ -12,17 +12,21 @@ class VentaRepository {
     try {
       final body = jsonEncode({
           'Id': venta.Id,
-          'nombreP': venta.nombreP,
-          'fecha': DateTime.now().toIso8601String(),
+          'Idproducto': venta.Idproducto,
+          'fecha': venta.fecha!.toIso8601String(),
           'detalles': venta.detalles,
+          'cantidad': venta.cantidad,
+          'precioventa': venta.precioventa,
         });
       final response = await http.post(
           Uri.parse(url),
           headers: {'Content-Type': 'application/json'},
           body: body);
       if (response.statusCode == 201 || response.statusCode == 200) {
+        print(response.body);
         return true;
       } else {
+        print(response.body);
         return false;
       }
     } catch (ex) {
@@ -57,9 +61,11 @@ class VentaRepository {
         },
         'body': jsonEncode({
           'Id': venta.Id,
-          'nombreP': venta.nombreP,
+          'Idproducto': venta.Idproducto,
           'fecha': venta.fecha!.toIso8601String(),
           'detalles': venta.detalles,
+          'cantidad': venta.cantidad,
+          'precioventa': venta.precioventa,
         }),
         'isBase64Encoded': false
       });

@@ -22,6 +22,15 @@ dependencies:
   flutter_localization: ^0.2.3
   window_size: ^0.1.0
   data_table_2: ^2.5.16
+  flutter_svg: ^2.0.16
+  image_picker: ^1.1.2
+  url_launcher: ^6.3.1
+  freezed: ^2.5.2
+  shared_preferences: ^2.3.3
+  carousel_slider: ^5.0.0
+  smooth_page_indicator: ^1.2.0+3
+  fl_chart: ^0.69.2
+  flutter_dotenv: ^5.2.1
 
 dev_dependencies:
   flutter_test:
@@ -49,5 +58,12 @@ flutter:
     - assets/logopuntocell.png
     - assets/letraslogo.png
     - assets/logo.png
+    - assets/ic_launcher.png
+    - assets/icons/dashboard.svg
+    - assets/icons/products.svg
+    - assets/icons/pdf.svg
+    - assets/icons/excel.svg
+    - assets/icons/record.svg
+    - assets/keys.env
 
   uses-material-design: true

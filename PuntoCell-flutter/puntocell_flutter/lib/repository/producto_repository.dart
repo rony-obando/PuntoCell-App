@@ -3,10 +3,8 @@ import 'dart:convert';
 import 'package:puntocell_flutter/models/producto.dart';
 import 'package:http/http.dart' as http;
 
-
-class ProductoRepository{
+class ProductoRepository {
   Future<bool> addProducto(Producto producto) async {
-    
     if (producto.Id!.isEmpty) {
       producto.Id = 'P${DateTime.now().millisecondsSinceEpoch}';
     }
@@ -15,9 +13,11 @@ class ProductoRepository{
     try {
       final body = jsonEncode({
         'Id': producto.Id,
-          'nombre': producto.nombre,
-          'marca': producto.marca,
-          'stock': producto.stock,
+        'nombre': producto.nombre,
+        'marca': producto.marca,
+        'stock': producto.stock,
+        'fotos': producto.fotos,
+        'precio': producto.precio,
       });
       final response = await http.post(
         Uri.parse(url),
@@ -25,7 +25,6 @@ class ProductoRepository{
         body: body,
       );
       if (response.statusCode == 201 || response.statusCode == 200) {
-
         return true;
       } else {
         return false;
@@ -34,10 +33,11 @@ class ProductoRepository{
       throw Exception(ex);
     }
   }
+
   Future<List<Producto>> fetchProductos() async {
     const String url =
         'https://idjc2m5tecgciw4spyp3zkgo540emkdf.lambda-url.us-east-2.on.aws/';
-        List<Producto> prds = [];
+    List<Producto> prds = [];
     try {
       final response = await http.get(Uri.parse(url));
       if (response.statusCode == 200) {
@@ -46,13 +46,12 @@ class ProductoRepository{
         return prds;
       } else {
         throw Exception('Error al cargar los productos');
-        
       }
     } catch (e) {
       throw Exception('Error al cargar los productos: $e');
-        
     }
   }
+
   Future<bool> deleteProducto(Producto producto) async {
     const String url =
         'https://ygftut36b7.execute-api.us-east-2.amazonaws.com/Producto/Producto';

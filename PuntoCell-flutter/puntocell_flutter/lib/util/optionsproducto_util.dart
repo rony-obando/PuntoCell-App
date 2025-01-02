@@ -17,6 +17,10 @@ class OptionsProduct {
                 ? const Center(child: CircularProgressIndicator())
                 : Column(
                     children: [
+                      
+                      const SizedBox(
+                        height: 20,
+                      ),
                       Align(
                         alignment: Alignment.topCenter,
                         child: FittedBox(
@@ -25,9 +29,9 @@ class OptionsProduct {
                             TextSpan(
                               children: [
                                 const TextSpan(
-                                  text: 'Opciones para: ',
+                                  text: 'Acciones disponibles para ',
                                   style: TextStyle(
-                                    color: Color(0xFF039443),
+                                    color: Color(0xff333333),
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
@@ -105,6 +109,12 @@ class OptionsProduct {
                       ),
                       ElevatedButton(
                         onPressed: () {
+                          if(prd.fotos!=null){
+                            context.read<ProductoProvider>().addImagen('', true);
+                            for(var f in prd.fotos!){
+                              context.read<ProductoProvider>().addImagen(f, false);
+                            }
+                          }
                           AddProductoUtil.show(
                               context, 'Actualizar ${prd.nombre}', prd.Id, prd);
                         },

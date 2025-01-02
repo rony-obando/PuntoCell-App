@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:puntocell_flutter/providers/dashboard.provider.dart';
 import 'package:puntocell_flutter/providers/home_provider.dart';
-import 'package:puntocell_flutter/providers/producto_provider.dart';
+import 'package:puntocell_flutter/screens/dashboard_screen.dart';
 import 'package:puntocell_flutter/screens/home_screen.dart';
-import 'package:puntocell_flutter/screens/productos_screen.dart';
 import 'package:puntocell_flutter/util/navigation_util.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -92,8 +92,8 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(20.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    context.read<ProductoProvider>().fetchProductos();
-                    context.read<HomeProvider>().changeBodyWidget(const ProductoScreen());
+                    context.read<DashboardProvider>().getLineChart();
+                    context.read<HomeProvider>().changeBodyWidget( const DashboardScreen());
                     navigatioUtil.navigateToScreen(
                       context, const HomeScreen());
                   },
